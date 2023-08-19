@@ -3,6 +3,7 @@ package com.capgemini.capgeminispring.api.country;
 import com.capgemini.capgeminispring.api.address.Address;
 import com.capgemini.capgeminispring.api.city.City;
 import com.capgemini.capgeminispring.api.state.State;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -23,12 +24,15 @@ public class Country {
     @Column
     private Integer population;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "country")
     private Set<State> countryStates;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "country")
     private Set<City> countryCities;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "country")
     private Set<Address> countryAddresses;
 
